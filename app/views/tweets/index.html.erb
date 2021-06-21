@@ -33,10 +33,18 @@
 <table>
     <tbody>
     <% @users_all.each do |user| %>
+    
+    <% if !follow_exist?(user.id) %> 
+    <% if !current(user.id) %>  
       <tr>
         <td><%= user.username %></td>
         <td><%= link_to 'See profile', user_path(user.id) %></td>
       </tr>
+      
+      <% end %>
+      
+      <% end %>
+      
     <% end %>
   </tbody>
 </table>

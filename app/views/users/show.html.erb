@@ -1,3 +1,9 @@
+<div class = 'row'>
+<div class = 'col-2'>
+</div>
+<div class = 'col-8'>
+</div>
+<div class = 'col-2'>
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -9,5 +15,42 @@
   <strong>Username:</strong>
   <%= @user.username %>
 </p>
+<% if !current(@user.id) %>
+<% if follow_exist?(@user.id) %>
+  <%= button_to "Unfollow", action: "unfollow"%>
+<% else %>
+  <%= button_to "Follow", action: "follow"%>
+<% end %>
+<% end %>
 
-<%= link_to 'Back', tweets_path %>
+  <%= link_to 'Back', tweets_path %>
+
+  <h1>followers</h1>
+  <%= @user.followers.count %>
+  <br>
+  <table>
+  <tbody>
+    <% @followers.each do |user| %>
+      <tr>
+        <td><%= user.username %></td>
+        <td><%= link_to 'See profile', user_path(user.id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+  </table>
+  <br>
+  <h1>followed</h1>
+  <%= @user.followeds.count %>
+  <br>
+  <table>
+  <tbody>
+    <% @followeds.each do |user| %>
+      <tr>
+        <td><%= user.username %></td>
+        <td><%= link_to 'See profile', user_path(user.id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+  </table>
+</div>
+</div>

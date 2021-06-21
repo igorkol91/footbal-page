@@ -1,23 +1,19 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
 
-  # GET /users or /users.json
-  def index
-    @users = User.all
-  end
-
   # GET /users/1 or /users/1.json
   def show
+    @user = User.find(params[:id])
+    @followings = @user.followers
+    @followed = @user.followeds
+    @followers = User.find(@followings.map{|f| f.follower_id}.uniq)
+    @followeds = User.find(@followed.map{|f| f.followed_id}.uniq)
   end
 
   # GET /users/new
   def new
     redirect_to tweets_path if logged_in?
     @user = User.new
-  end
-
-  # GET /users/1/edit
-  def edit
   end
 
   # POST /users or /users.json
@@ -35,25 +31,25 @@ class UsersController < ApplicationController
     end
   end
 
-  # PATCH/PUT /users/1 or /users/1.json
-  def update
-    respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to @user, notice: "User was successfully updated." }
-        format.json { render :show, status: :ok, location: @user }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+  def follow
+    @user = User.find(params[:id])
+    @follow = current_user.followeds.build(followed: @user)
+
+    if @follow.save
+      flash[:notice] = 'You are following ', @user.username
+      redirect_to user_path(@user)
+    else
+      flash[:alert] = 'Something went wrong with your following...'
+      redirect_to user_path(@user)
     end
   end
 
-  # DELETE /users/1 or /users/1.json
-  def destroy
-    @user.destroy
-    respond_to do |format|
-      format.html { redirect_to users_url, notice: "User was successfully destroyed." }
-      format.json { head :no_content }
+  def unfollow
+    @user = User.find(params[:id])
+    if Following.exists?(follower_id: current_user.id, followed_id: @user.id)
+      Following.find_by('follower_id = ? and followed_id = ?', current_user.id, @user.id).destroy
+      flash[:alert] = 'Unfollowed ', @user.username
+      redirect_to user_path(@user.id)
     end
   end
 
