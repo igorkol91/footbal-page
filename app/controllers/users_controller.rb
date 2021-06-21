@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 
   # GET /users/new
   def new
-    redirect_to post_index_path if logged_in?
+    redirect_to tweets_path if logged_in?
     @user = User.new
   end
 

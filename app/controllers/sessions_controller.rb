@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   def new
-    redirect_to post_index_path if logged_in?
+    redirect_to tweets_path if logged_in?
   end
 
   def create
@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
       if @user
         session[:user_id] = @user.id
         flash[:success] = "You're logged in!"
-        redirect_to post_index_path
+        redirect_to tweets_path
       else
         flash[:error] = 'This user does not exists!!'
         redirect_to new_user_path
