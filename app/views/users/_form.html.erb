@@ -11,17 +11,23 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div>
+  <div>
     <%= form.label :email %>
+  </div>
+    
     <%= form.email_field :email %>
   </div>
 
-  <div class="field">
+  <div class='pb-3'>
+  <div>
     <%= form.label :username %>
+  </div>
+    
     <%= form.text_field :username %>
   </div>
 
-  <div class="actions">
+  <div>
     <%= form.submit %>
   </div>
 <% end %>

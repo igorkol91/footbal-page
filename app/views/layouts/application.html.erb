@@ -13,7 +13,21 @@
   </head>
 
   <body>
-    <%= render 'layouts/navbar' %>
+    <header class='row'>
+    <div class='col-2 left-partial-top flex-column'>
+      <%= render 'layouts/leftside' %>
+    </div>
+    <div class='col-10'>
+      <%= render 'layouts/navbar' %>
+    </div>
+    </header>
+    <div class='row'>
+    <div class='col-2 left_partial_main'>
+        <%= render 'layouts/left_partial_main' %>
+    </div>
+    <div class='col-10'>
     <%= yield %>
+    </div>
+    </div>
   </body>
 </html>

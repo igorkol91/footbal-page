@@ -1,0 +1,7 @@
+<div class='left-partial-top h-100'>
+
+<% if logged_in? %>
+<img src="<%= current_user.photo %>" alt="profile-pic" class='profile-pic'>
+<%= link_to (current_user.username.capitalize), user_path(current_user), class: 'text-white text-decoration-none mx-2' %>
+<% end %>
+</div>

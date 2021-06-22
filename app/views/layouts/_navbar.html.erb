@@ -1,24 +1,23 @@
-<br> <br>
-<ul class="nav">
+<ul class="nav d-flex justify-content-end h-100 align-items-center">
   <% if !logged_in? %>
   <li class="nav-item">
-    <%= link_to 'SignIn', login_path %> |
+    <%= link_to 'SignIn', login_path, class: 'text-white text-decoration-none' %> 
   </li>
   <li class="nav-item">
-    <%= link_to 'SignUp', login_path, method: :post %> |
+    <%= link_to 'SignUp', login_path, method: :post, class: 'text-white text-decoration-none' %> 
   </li>
   
   <% end %>
 
   <% if logged_in? %>
   <li class="nav-item">
-    <%= link_to 'Home', tweets_path %> |
+    <%= link_to 'Home', tweets_path, class: 'text-white text-decoration-none' %> 
   </li>
     <li class="nav-item">
-    <%= link_to 'MyProfile', user_path(current_user) %> |
+    <%= link_to 'MyProfile', user_path(current_user), class: 'text-white text-decoration-none' %> 
   </li>
   <li class="nav-item">
-    <%= link_to 'Logout', logout_path %> |
+    <%= link_to 'Logout', logout_path, class: 'text-white text-decoration-none' %>
   </li>
   
   <% end %>

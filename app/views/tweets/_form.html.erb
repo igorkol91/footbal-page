@@ -1,3 +1,4 @@
+<div class='d-inline-block pb-5'>
 <%= form_with(model: tweet) do |form| %>
   <% if tweet.errors.any? %>
     <div id="error_explanation">
@@ -11,17 +12,22 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div>
+  <div>
+  </div>
     <%= form.label :Author %>
     <%= current_user.username %>
   </div>
 
-  <div class="field">
+  <div>
+  <div>
     <%= form.label :text %>
+  </div>
     <%= form.text_area :text %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div>
+    <%= form.submit 'Post Prediction' %>
   </div>
 <% end %>
+</div>

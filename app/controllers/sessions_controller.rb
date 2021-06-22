@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
         redirect_to tweets_path
       else
         flash[:error] = 'This user does not exists!!'
-        redirect_to new_user_path
+        redirect_to login_path
       end
   end
 
