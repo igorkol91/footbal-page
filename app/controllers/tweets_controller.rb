@@ -1,6 +1,6 @@
 class TweetsController < ApplicationController
   before_action :require_login, only: [:index]
-  before_action :set_tweet, only: %i[ show edit update destroy ]
+  before_action :set_tweet, only: %i[show edit update destroy]
 
   # GET /tweets or /tweets.json
   def index
@@ -25,7 +25,7 @@ class TweetsController < ApplicationController
 
     respond_to do |format|
       if @tweet.save
-        format.html { redirect_to tweets_path, notice: "Tweet was successfully created." }
+        format.html { redirect_to tweets_path, notice: 'Tweet was successfully created.' }
         format.json { render :index, status: :created, location: @tweet }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -35,13 +35,14 @@ class TweetsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_tweet
-      @tweet = Tweet.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def tweet_params
-      params.require(:tweet).permit(:text)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_tweet
+    @tweet = Tweet.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def tweet_params
+    params.require(:tweet).permit(:text)
+  end
 end
