@@ -60,7 +60,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if Following.exists?(follower_id: current_user.id, followed_id: @user.id)
       Following.find_by('follower_id = ? and followed_id = ?', current_user.id, @user.id).destroy
-      flash[:alert] = 'Unfollowed ', @user.username
+      flash[:notice] = 'Unfollowed ', @user.username
       redirect_to user_path(@user.id)
     end
   end
