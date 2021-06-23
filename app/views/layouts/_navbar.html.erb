@@ -23,3 +23,27 @@
   <% end %>
   
 </ul>
+
+<ul class=" d-flex justify-content-end align-items-center fixed-bottom">
+  <% if !logged_in? %>
+  <li class='list-unstyled'>
+    <%= link_to 'SignIn', login_path, class: 'text-decoration-none' %> 
+  </li>
+  <li class='list-unstyled'>
+    <%= link_to 'SignUp', login_path, method: :post, class: 'text-decoration-none' %> 
+  </li>
+  
+  <% end %>
+
+  <% if logged_in? %>
+  <li class='list-unstyled'>
+    <%= link_to 'Home', tweets_path, class: 'text-decoration-none' %> 
+  </li>
+    <li class='list-unstyled'>
+    <%= link_to 'MyProfile', user_path(current_user), class: 'text-decoration-none' %> 
+  </li>
+  <li class='list-unstyled'>
+    <%= link_to 'Logout', logout_path, class: 'text-decoration-none' %>
+  </li>
+  <% end %>
+</ul>
