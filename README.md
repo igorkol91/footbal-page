@@ -21,7 +21,7 @@ Postgres Ruby Gem
 Instal gems with:
 
 ```
-bundle install
+    bundle install
 ```
 
 Setup database with:
@@ -34,6 +34,7 @@ Setup database with:
 Run tests with
 
 ```
+    rails g rspec:install
     rspec
 ```
 
