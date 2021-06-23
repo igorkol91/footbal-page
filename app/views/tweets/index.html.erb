@@ -1,21 +1,29 @@
+<div class='d-flex justify-content-between'>
+  <a href="#" class='text-decoration-none'><h4 class='text-color-light my-4 mx-3'>PREDICT</h4></a>
+  <h5 class='mx-5 my-4 text-color-light'>Who to follow:</h5>
+</div>
 <div class='row'>
 <div class="col-10">
 <p id="notice"><%= notice %></p>
-<h1 class='text-center'>Post your footbal predictions here </h1>
-<div class='d-flex justify-content-center w-100'>
+<h4 class='text-color-grey mx-5 mt-5'>Post your footbal predictions here </h4>
+<div class='d-flex w-100 mx-5'>
 <%= render 'form', tweet: @tweet %>
 </div>
 
-<div class='d-flex align-items-center flex-column'>
-    <div class='d-inline-flex flex-column w-50'>
+<p class='h5 mx-4 text-color-blue'>A NEW PREDICTIONS</p>
+
+<div class='d-flex mx-4 mt-5 flex-column'>
+    <div>
     <% @tweets.each do |tweet| %>
-      <div class='d-flex pb-5'>
+      <div class='d-flex pb-4'>
        <img src="<%= tweet.author.photo %>" alt="profile-pic", class='profile-pic'> 
        <div class='px-3'>
-        <span class='d-block'>
+        <p class='author-name-p d-block mb-1'>
           <%= tweet.author.username %>
-        </span>
+        </p>
+        <p class='author-text-p '>
         <%= tweet.text %>
+        </p>
         </div>
       </div>
     <% end %>

@@ -2,6 +2,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy]
 
+
   # GET /users/1 or /users/1.json
   def show
     @user = User.find(params[:id])
@@ -20,10 +21,10 @@ class UsersController < ApplicationController
   # POST /users or /users.json
   def create
     @user = User.new(user_params)
-
+    
     respond_to do |format|
       if @user.save
-        format.html { redirect_to login_path, notice: 'User was successfully created.' }
+        format.html { redirect_to tweets_path, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -49,7 +50,7 @@ class UsersController < ApplicationController
     @follow = current_user.followeds.build(followed: @user)
 
     if @follow.save
-      flash[:notice] = 'You are following ', @user.username
+      flash[:notice] = "You are following #{@user.username}"
     else
       flash[:alert] = 'Something went wrong with your following...'
     end
@@ -60,7 +61,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if Following.exists?(follower_id: current_user.id, followed_id: @user.id)
       Following.find_by('follower_id = ? and followed_id = ?', current_user.id, @user.id).destroy
-      flash[:notice] = 'Unfollowed ', @user.username
+      flash[:notice] = "You just unfollowed #{@user.username}"
       redirect_to user_path(@user.id)
     end
   end

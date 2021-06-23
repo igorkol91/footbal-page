@@ -1,6 +1,6 @@
 # Football match predictions with Ruby on Rails
 
-> This repo contains my code for footbal code :)
+> This is a Football scores predition page where you can create account and post your predictions annonimously
 
 ## Built With
 
@@ -29,6 +29,12 @@ Setup database with:
 ```
    rails db:create
    rails db:migrate
+```
+
+Run tests with
+
+```
+    rspec
 ```
 
 ### Github Actions

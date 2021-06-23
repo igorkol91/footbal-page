@@ -1,10 +1,10 @@
 <ul class="nav d-flex justify-content-end h-100 align-items-center">
   <% if !logged_in? %>
   <li class="nav-item">
-    <%= link_to 'SignIn', login_path, class: 'text-white text-decoration-none' %> 
+    <%= link_to 'SignIn', login_path, class: 'text-color-dark text-decoration-none' %> 
   </li>
   <li class="nav-item">
-    <%= link_to 'SignUp', login_path, method: :post, class: 'text-white text-decoration-none' %> 
+    <%= link_to 'SignUp', login_path, method: :post, class: 'text-color-dark text-decoration-none' %> 
   </li>
   
   <% end %>
@@ -12,39 +12,15 @@
 
   <% if logged_in? %>
   <li class="nav-item">
-    <%= link_to 'Home', tweets_path, class: 'text-white text-decoration-none' %> 
+    <%= link_to 'Home', tweets_path, class: 'text-color-dark text-decoration-none' %> 
   </li>
     <li class="nav-item">
-    <%= link_to 'MyProfile', user_path(current_user), class: 'text-white text-decoration-none' %> 
+    <%= link_to 'MyProfile', user_path(current_user), class: 'text-color-dark text-decoration-none' %> 
   </li>
   <li class="nav-item">
-    <%= link_to 'Logout', logout_path, class: 'text-white text-decoration-none' %>
+    <%= link_to 'Logout', logout_path, class: 'text-color-dark text-decoration-none' %>
   </li>
   
   <% end %>
   
-</ul>
-
-<ul class=" d-flex justify-content-end align-items-center fixed-bottom bg-white">
-  <% if !logged_in? %>
-  <li class='list-unstyled'>
-    <%= link_to 'SignIn', login_path, class: 'text-decoration-none' %> 
-  </li>
-  <li class='list-unstyled'>
-    <%= link_to 'SignUp', login_path, method: :post, class: 'text-decoration-none' %> 
-  </li>
-  
-  <% end %>
-
-  <% if logged_in? %>
-  <li class='list-unstyled'>
-    <%= link_to 'Home', tweets_path, class: 'text-decoration-none' %> 
-  </li>
-    <li class='list-unstyled'>
-    <%= link_to 'MyProfile', user_path(current_user), class: 'text-decoration-none' %> 
-  </li>
-  <li class='list-unstyled'>
-    <%= link_to 'Logout', logout_path, class: 'text-decoration-none' %>
-  </li>
-  <% end %>
 </ul>
