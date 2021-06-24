@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   # GET /users/1 or /users/1.json
   def show
     @user = User.find(params[:id])
+    @my_tweets = @user.tweets.includes([:author])
     @followings = @user.followers
     @followed = @user.followeds
     @followers = User.find(@followings.map { |f| f.follower_id }.uniq)

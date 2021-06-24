@@ -4,7 +4,7 @@
   <h3 class='text-color-blue mx-4 mt-5'><%= @user.username %> predictions</h3>
   <div class='d-flex mx-4 mt-5 flex-column'>
     <div>
-    <% @user.tweets.each do |tweet| %>
+    <% @my_tweets.each do |tweet| %>
       <div class='d-flex pb-4'>
        <img src="<%= default_photo(tweet.author.photo) %>" alt="profile-pic", class='profile-pic'> 
        <div class='px-3'>
