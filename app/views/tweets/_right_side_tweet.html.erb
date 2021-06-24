@@ -1,17 +1,13 @@
     <% @users_all.each do |user| %>
-    
     <% if !follow_exist?(user.id) %> 
     <% if !current(user.id) %>  
       <div class='d-flex align-items-center w-100 justify-content-center pt-3'>
-        <img src="<%= user.photo %>" alt="profile-pic" class='profile-pic'>
-        <span class='mx-3'>
+        <img src="<%= default_photo(user.photo) %>" alt="profile-pic" class='profile-pic rounded-circle'>
+        <span class='mx-2 d-flex flex-column author-name-p'>
             <%= user.username %>
+              <%= link_to 'See profile', user_path(user.id) %>
         </span>
       </div>
-      <div class='text-center' >
-        <%= link_to 'See profile', user_path(user.id), class:'btn btn-transparent text-primary' %>
-      </div>
-      <div class='border-top py-1'></div>
       <% end %>
       <% end %>
     <% end %>

@@ -4,7 +4,7 @@ class TweetsController < ApplicationController
 
   # GET /tweets or /tweets.json
   def index
-    @tweets = Tweet.order('created_at DESC')
+    @tweets = Tweet.order('created_at DESC').includes([:author])
     @tweet = Tweet.new
     @users_all = User.all
   end
@@ -28,8 +28,7 @@ class TweetsController < ApplicationController
         format.html { redirect_to tweets_path, notice: 'Tweet was successfully created.' }
         format.json { render :index, status: :created, location: @tweet }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @tweet.errors, status: :unprocessable_entity }
+        format.html { redirect_to tweets_path, notice: 'Tweet body must not be empty.' }
       end
     end
   end

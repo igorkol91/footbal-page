@@ -1,7 +1,7 @@
-<div class='left-partial-top h-100'>
+<div class='left-partial-top h-100 mt-3 mx-3'>
 
 <% if logged_in? %>
-<img src="<%= current_user.photo %>" alt="profile-pic" class='profile-pic'>
-<%= link_to (current_user.username.capitalize), user_path(current_user), class: 'text-white text-decoration-none mx-2' %>
+<img src="<%= default_photo(current_user.photo) %>" alt="profile-pic" class='profile-pic'>
+<%= link_to (current_user.username.capitalize), user_path(current_user), class: 'text-decoration-none mx-2 text-color-grey' %>
 <% end %>
 </div>

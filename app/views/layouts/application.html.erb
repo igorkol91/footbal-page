@@ -13,6 +13,7 @@
   </head>
 
   <body>
+    <% if logged_in? %>
     <header class='row'>
     <div class='col-2 left-partial-top flex-column'>
       <%= render 'layouts/leftside' %>
@@ -25,6 +26,9 @@
     <div class='col-2 left_partial_main'>
         <%= render 'layouts/left_partial_main' %>
     </div>
+    
+    <% end %>
+    
     <div class='col-10'>
     <%= yield %>
     </div>

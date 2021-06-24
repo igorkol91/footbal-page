@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   # GET /users/1 or /users/1.json
   def show
     @user = User.find(params[:id])
+    @my_tweets = @user.tweets.includes([:author])
     @followings = @user.followers
     @followed = @user.followeds
     @followers = User.find(@followings.map { |f| f.follower_id }.uniq)
@@ -24,7 +25,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         format.html { redirect_to login_path, notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: @user }
+        format.json { render :index, status: :created, location: @user }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -49,7 +50,7 @@ class UsersController < ApplicationController
     @follow = current_user.followeds.build(followed: @user)
 
     if @follow.save
-      flash[:notice] = 'You are following ', @user.username
+      flash[:notice] = "You are following #{@user.username}"
     else
       flash[:alert] = 'Something went wrong with your following...'
     end
@@ -60,7 +61,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if Following.exists?(follower_id: current_user.id, followed_id: @user.id)
       Following.find_by('follower_id = ? and followed_id = ?', current_user.id, @user.id).destroy
-      flash[:notice] = 'Unfollowed ', @user.username
+      flash[:notice] = "You just unfollowed #{@user.username}"
       redirect_to user_path(@user.id)
     end
   end

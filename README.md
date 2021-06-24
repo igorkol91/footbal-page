@@ -1,10 +1,10 @@
 # Football match predictions with Ruby on Rails
 
-> This repo contains my code for footbal code :)
+> This is a Football scores predition page where you can create account and post your predictions annonimously
 
 ## Built With
 
-- Ruby on Rails v5.2.4
+- Ruby on Rails v6.1.3
 
 ## Getting Started
 
@@ -14,14 +14,17 @@ To get a local copy up and running follow these simple example steps.
 
 Ruby: 2.7.2
 Rails: 6.1.3
-Postgres Ruby Gem
 
-### Setup
+### Setup and Local copy
+
+Inside you terminal rub $git clone https://github.com/igorkol91/footbal-page/tree/test_branch
+Run $cd footbal-page
+Run $ code .
 
 Instal gems with:
 
 ```
-bundle install
+    bundle install
 ```
 
 Setup database with:
@@ -29,6 +32,13 @@ Setup database with:
 ```
    rails db:create
    rails db:migrate
+```
+
+Run tests with
+
+```
+    rails g rspec:install
+    rspec
 ```
 
 ### Github Actions
@@ -53,7 +63,7 @@ Open `http://localhost:3000/` in your browser.
 
 ### Deployment
 
-TBA
+[Live Link](https://calm-wave-07003.herokuapp.com)
 
 ## Authors
 

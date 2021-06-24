@@ -1,17 +1,19 @@
 <div class = 'row'>
-<div class = 'col-10'>
-  <img src="<%= @user.cover %>" alt="user-cover", width=100%, height=500px>
-  <h1 class='py-5 text-center'><%= @user.username %> predictions</h1> 
-  <div class='d-flex align-items-center flex-column'>
-    <div class='d-inline-flex flex-column w-50'>
-    <% @user.tweets.each do |tweet| %>
-      <div class='d-flex pb-5'>
-       <img src="<%= tweet.author.photo %>" alt="profile-pic", class='profile-pic'> 
+<div class = 'col-9 px-0'>
+  <img src="<%= default_cover(@user.cover) %>" alt="user-cover", width=100%, height=400px>
+  <h3 class='text-color-blue mx-4 mt-5'><%= @user.username %> predictions</h3>
+  <div class='d-flex mx-4 mt-5 flex-column'>
+    <div>
+    <% @my_tweets.each do |tweet| %>
+      <div class='d-flex pb-4'>
+       <img src="<%= default_photo(tweet.author.photo) %>" alt="profile-pic", class='profile-pic'> 
        <div class='px-3'>
-        <span class='d-block'>
+        <p class='author-name-p d-block mb-1'>
           <%= tweet.author.username %>
-        </span>
+        </p>
+        <p class='author-text-p '>
         <%= tweet.text %>
+        </p>
         </div>
       </div>
     <% end %>
@@ -19,84 +21,81 @@
 </div>
   
 </div>
-<div class = 'col-2'>
+<div class = 'col-3 px-5'>
 <p id="notice"><%= notice %></p>
 <% if !current(@user.id) %>
 <% if follow_exist?(@user.id) %>
-  <%= button_to "Unfollow", action: "unfollow", class:'btn btn-secondary' %>
+<div>
+  <%= button_to "Unfollow", action: "unfollow" %>
+</div>
 <% else %>
-  <%= button_to "Follow", action: "follow", class:'btn btn-secondary' %>
+<div>
+  <%= button_to "Follow", action: "follow" %>
+</div>
 <% end %>
 <% end %>
 
+
+
+
+<p class='d-flex justify-content-center pt-4'>
+  <img class='rounded-circle' src="<%= default_photo(@user.photo) %>" alt="prfile-pic", height=100, width=100> 
+</p>
+
+<p class='h5 text-center author-name-p'>
+  <%= @user.username %>
+</p>
+
 <% if logged_in? %>
-<div class='d-flex text-center justify-content-around pb-5'>
-    <span class='pt-3'>
-        <%= @user.followers.count %>
-        <h5>Followers</h5>
+<div class='d-flex text-center justify-content-between'>
+    <span class='text-white pt-3'>
+       <p class='h4 text-color-light'><%= @user.followers.count %></p>
+        <h6 class='text-color-grey'>Followers</h6>
     </span>
-    <span class='pt-3'>
-        <%= @user.followeds.count %>
-        <h5>Following</h5>
+    <span class='text-white pt-3'>
+        <p class='h4 text-color-light'><%= @user.followeds.count %></p>
+        <h6 class='text-color-grey'>Following</h6>
+    </span>
+    <span class='text-white pt-3'>
+        <p class='h4 text-color-light'><%= @user.tweets.count %></p>
+        <h6 class='text-color-grey'>Predictions</h6>
     </span>
 </div>
 <% end %>
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
 
-<p>
-  <strong>Username:</strong>
-  <%= @user.username %>
-</p>
-
-<p>
-  <strong>Profile Picture:</strong>
-  <img src="<%= @user.photo %>" alt="prfile-pic", height=100, width=100> 
-</p>
-      
-      <% if current(@user.id) %>
-            
+      <% if current(@user.id) %>     
 <div class="d-flex flex-column my-auto">
             <%= form_for(:user, method: :put) do |u| %>
-              <%= u.label :photo, "Change Photo"%>
-              <%= u.file_field :photo, class:'text-wrap' %>
-              <%= u.submit 'Upload Photo', class:'mt-2 mb-4'%>
+              <%= u.label :photo, "Change Photo", class:'text-color-light pt-2' %>
+              <%= u.file_field :photo, class:'bg-blue', onchange: "this.form.submit();" %>
               <% end %>
               <%= form_for(:user, method: :put) do |u| %>
-              <%= u.label :cover, "Change Cover"%>
-              <%= u.file_field :cover, class:'text-wrap' %>
-              <%= u.submit 'Upload Cover', class:'mt-2 mb-4' %>
+              <%= u.label :cover, "Change Cover", class:'text-color-light pt-2'%>
+              <%= u.file_field :cover, class:'text-wrap', onchange: "this.form.submit();" %>
             <% end %>
         </div>
           <% end %>
 
-  <h1>Followers</h1>
+  <h4 class='text-color-light mt-4 mx-3'>Followers</h4>
     <% @followers.each do |user| %>
-        <div class='d-flex pb-5'>
-       <img src="<%= user.photo %>" alt="profile-pic", class='profile-pic'> 
-       <div class='px-3'>
-        <span class='d-block'>
-          <%= user.username %>
+        <div class='d-flex align-items-center w-100 justify-content-start pt-2 mx-4'>
+        <img src="<%= default_photo(user.photo) %>" alt="profile-pic" class='profile-pic rounded-circle'>
+        <span class='mx-2 d-flex flex-column author-name-p'>
+            <%= user.username %>
+              <%= link_to 'See profile', user_path(user.id) %>
         </span>
-        <%= link_to 'See profile', user_path(user.id) %>
-        </div>
       </div>
     <% end %>
   <br>
-  <br>
-  <h1>Following</h1>
-  <% @followeds.each do |user| %>
-        <div class='d-flex pb-5'>
-       <img src="<%= user.photo %>" alt="profile-pic", class='profile-pic'> 
-       <div class='px-3'>
-        <span class='d-block'>
-          <%= user.username %>
+  <h4 class='text-color-light mt-2 mx-3'>Following</h4>
+    <% @followeds.each do |user| %>
+        <div class='d-flex align-items-center w-100 justify-content-start pt-2 mx-4'>
+        <img src="<%= default_photo(user.photo) %>" alt="profile-pic" class='profile-pic rounded-circle'>
+        <span class='mx-2 d-flex flex-column author-name-p'>
+            <%= user.username %>
+              <%= link_to 'See profile', user_path(user.id) %>
         </span>
-        <%= link_to 'See profile', user_path(user.id) %>
-        </div>
       </div>
     <% end %>
 </div>
