@@ -11,7 +11,7 @@ RSpec.describe Tweet, type: :model do
     end
 
     it 'Expect false if tweet body is empty' do
-      tweet = Tweet.create()
+      tweet = Tweet.create
 
       expect(tweet.id).to be_falsey
     end

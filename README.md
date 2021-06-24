@@ -4,7 +4,7 @@
 
 ## Built With
 
-- Ruby on Rails v5.2.4
+- Ruby on Rails v6.1.3
 
 ## Getting Started
 
@@ -14,9 +14,12 @@ To get a local copy up and running follow these simple example steps.
 
 Ruby: 2.7.2
 Rails: 6.1.3
-Postgres Ruby Gem
 
-### Setup
+### Setup and Local copy
+
+Inside you terminal rub $git clone https://github.com/igorkol91/footbal-page/tree/test_branch
+Run $cd footbal-page
+Run $ code .
 
 Instal gems with:
 

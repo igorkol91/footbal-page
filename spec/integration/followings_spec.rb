@@ -1,3 +1,4 @@
+# rubocop:disable Lint/UselessAssignment
 require 'rails_helper'
 
 RSpec.describe Following, type: :model do
@@ -22,3 +23,4 @@ RSpec.describe Following, type: :model do
     end
   end
 end
+# rubocop:enable Lint/UselessAssignment
