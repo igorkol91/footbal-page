@@ -1,12 +1,12 @@
 <div class = 'row'>
 <div class = 'col-10'>
-  <img src="<%= @user.cover %>" alt="user-cover", width=100%, height=400px>
+  <img src="<%= default_cover(@user.cover) %>" alt="user-cover", width=100%, height=400px>
   <h3 class='text-color-blue mx-4 mt-5'><%= @user.username %> predictions</h3>
   <div class='d-flex mx-4 mt-5 flex-column'>
     <div>
     <% @user.tweets.each do |tweet| %>
       <div class='d-flex pb-4'>
-       <img src="<%= tweet.author.photo %>" alt="profile-pic", class='profile-pic'> 
+       <img src="<%= default_photo(tweet.author.photo) %>" alt="profile-pic", class='profile-pic'> 
        <div class='px-3'>
         <p class='author-name-p d-block mb-1'>
           <%= tweet.author.username %>
@@ -39,7 +39,7 @@
 
 
 <p class='d-flex justify-content-center pt-4'>
-  <img class='rounded-circle' src="<%= @user.photo %>" alt="prfile-pic", height=100, width=100> 
+  <img class='rounded-circle' src="<%= default_photo(@user.photo) %>" alt="prfile-pic", height=100, width=100> 
 </p>
 
 <p class='h5 text-center author-name-p'>

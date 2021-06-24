@@ -16,7 +16,7 @@
     <div>
     <% @tweets.each do |tweet| %>
       <div class='d-flex pb-4'>
-       <img src="<%= tweet.author.photo %>" alt="profile-pic", class='profile-pic'> 
+       <img src="<%= default_photo(tweet.author.photo) %>" alt="profile-pic", class='profile-pic'> 
        <div class='px-3'>
         <p class='author-name-p d-block mb-1'>
           <%= tweet.author.username %>
