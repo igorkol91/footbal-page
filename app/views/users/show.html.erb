@@ -80,7 +80,7 @@
   <h4 class='text-color-light mt-4 mx-3'>Followers</h4>
     <% @followers.each do |user| %>
         <div class='d-flex align-items-center w-100 justify-content-center pt-2'>
-        <img src="<%= user.photo %>" alt="profile-pic" class='profile-pic rounded-circle'>
+        <img src="<%= default_photo(user.photo) %>" alt="profile-pic" class='profile-pic rounded-circle'>
         <span class='mx-2 d-flex flex-column author-name-p'>
             <%= user.username %>
               <%= link_to 'See profile', user_path(user.id) %>
@@ -91,7 +91,7 @@
   <h4 class='text-color-light mt-2 mx-3'>Following</h4>
     <% @followeds.each do |user| %>
         <div class='d-flex align-items-center w-100 justify-content-center pt-2'>
-        <img src="<%= user.photo %>" alt="profile-pic" class='profile-pic rounded-circle'>
+        <img src="<%= default_photo(user.photo) %>" alt="profile-pic" class='profile-pic rounded-circle'>
         <span class='mx-2 d-flex flex-column author-name-p'>
             <%= user.username %>
               <%= link_to 'See profile', user_path(user.id) %>
