@@ -12,13 +12,13 @@
 
   <% if logged_in? %>
   <li class="nav-item">
-    <%= link_to 'Home', tweets_path, class: 'text-color-dark text-decoration-none' %> 
+    <%= link_to 'Home', tweets_path, class: 'text-decoration-none text-white' %> 
   </li>
     <li class="nav-item">
-    <%= link_to 'MyProfile', user_path(current_user), class: 'text-color-dark text-decoration-none' %> 
+    <%= link_to 'MyProfile', user_path(current_user), class: 'text-white text-decoration-none' %> 
   </li>
   <li class="nav-item">
-    <%= link_to 'Logout', logout_path, class: 'text-color-dark text-decoration-none' %>
+    <%= link_to 'Logout', logout_path, class: 'text-white text-decoration-none' %>
   </li>
   
   <% end %>
