@@ -2,7 +2,7 @@
 
 > This is a Football scores predition page where you can create account and post your predictions annonimously
 
-## Built With
+## Built With      
 
 - Ruby on Rails v6.1.3
 
