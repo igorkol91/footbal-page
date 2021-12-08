@@ -12,7 +12,7 @@ To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-Ruby: 2.7.2
+Ruby: 2.7.3
 Rails: 6.1.3
 
 ### Setup and Local copy
